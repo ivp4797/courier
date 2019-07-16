@@ -1,6 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
+
+const styles = StyleSheet.create({
+	status: {
+		fontWeight: "bold",
+		color: "white",
+		borderRadius: 5,
+		paddingLeft: 10,
+		paddingRight: 10,
+		paddingTop: 5,
+		paddingBottom: 5
+	}
+});
 
 export default class Status extends React.Component {
 	static propTypes = {
@@ -30,18 +42,7 @@ export default class Status extends React.Component {
 	
 	render() {
 		return (
-			<Text style={{
-					fontWeight: "bold",
-					color: "white",
-					backgroundColor: this.colors[this.props.status],
-					borderRadius: 5,
-					paddingLeft: 10,
-					paddingRight: 10,
-					paddingTop: 5,
-					paddingBottom: 5,
-					...this.props.style
-				}}
-			>
+			<Text style={[ styles.status, { backgroundColor: this.colors[this.props.status] }, this.props.style ]}>
 				{ this.descriptions[this.props.status] }
 			</Text>
 		);

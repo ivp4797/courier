@@ -1,8 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { formatPhone } from "./format";
+
+const styles = StyleSheet.create({
+	container: {
+		borderRadius: 10,
+		backgroundColor: "#D3D3D3",
+		display: "flex",
+		flexDirection: "row"
+	},
+	info: {
+		paddingLeft: 5,
+		paddingTop: 5,
+		paddingBottom: 5,
+		display: "flex",
+		flexDirection: "column",
+		flex: 3
+	},
+	phone: {
+		color: "gray"
+	},
+	callBtn: {
+		backgroundColor: "green",
+		flex: 1,
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		borderTopRightRadius: 10,
+		borderBottomRightRadius: 10
+	}
+});
 
 export default class Contact extends React.Component {
 	static propTypes = {
@@ -17,21 +46,12 @@ export default class Contact extends React.Component {
 
 	render() {
 		return (
-			<View style={{ borderRadius: 10, backgroundColor: "#D3D3D3", display: "flex", flexDirection: "row" }}>
-				<View style={{ paddingLeft: 5, paddingTop: 5, paddingBottom: 5, display: "flex", flexDirection: "column", flex: 3 }}>
+			<View style={ styles.container }>
+				<View style={ styles.info }>
 					<Text>{ `${this.props.firstName} ${this.props.lastName}` }</Text>
-					<Text style={{ color: "gray" }}>{ formatPhone(this.props.phone) }</Text>
+					<Text style={ styles.phone }>{ formatPhone(this.props.phone) }</Text>
 				</View>
-				<View
-					style={{
-						 backgroundColor: "green",
-						 flex: 1,
-						 display: "flex",
-						 justifyContent: "center",
-						 alignItems: "center",
-						 borderTopRightRadius: 10,
-						 borderBottomRightRadius: 10
-					}}>
+				<View style={ styles.callBtn }>
 					<Icon name="call" color="white" size={ 30 } />
 				</View>
 			</View>
