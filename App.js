@@ -1,11 +1,13 @@
 import React from "react";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Orders from "./Orders";
+import OrderDetails from "./OrderDetails";
 
 const AppContainer = createAppContainer(
 	createStackNavigator(
 		{
-			Orders
+			Orders,
+			Details: OrderDetails
 		},
 		{
 			initialRouteName: "Orders",

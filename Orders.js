@@ -26,16 +26,20 @@ export default class Orders extends React.Component {
 		let date = null;
 		this.state.orders.forEach(order => {
 			const { creationDate } = order;
+			const data = {
+				order,
+				goToDetails: () => this.props.navigation.navigate("Details", { order })
+			};
 			if ((date == null) || !isSameDay(date, creationDate)) {
 				date = creationDate;
 				sections.push({
 					key: order.id,
 					title: formattedDate(date),
-					data: [ order ]
+					data: [ data ]
 				});
 			}
 			else {
-				sections[sections.length - 1].data.push(order);
+				sections[sections.length - 1].data.push(data);
 			}
 		});
 		return sections;
