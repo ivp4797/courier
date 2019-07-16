@@ -13,7 +13,7 @@ export default class OrderDetails extends React.Component {
 				<OrderArea style={{ display: "flex", flexDirection: "column", marginLeft: 10, marginRight: 10 }}>
 					<View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 40 }}>
 						<View style={{ display: "flex", flexDirection: "column" }}>
-							<Text style={{ color: "gray" }}>Дата создания</Text>
+							<Text style={{ color: "gray", marginBottom: 5 }}>Дата создания</Text>
 							<Text>{ formattedDateTime(order.creationDate) }</Text>
 						</View>
 						<Status status={ order.status } />
