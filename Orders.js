@@ -29,6 +29,7 @@ export default class Orders extends React.Component {
 			if ((date == null) || !isSameDay(date, creationDate)) {
 				date = creationDate;
 				sections.push({
+					key: order.id,
 					title: formattedDate(date),
 					data: [ order ]
 				});
@@ -47,13 +48,13 @@ export default class Orders extends React.Component {
 					style={{ paddingLeft: 10, paddingRight: 10 }}
 					sections={ this.sections() }
 					renderItem={ ({ item, index, section }) => (
-						<OrderPreview key={ index } { ...item } />
+						<OrderPreview key={ item.id + "." + index } { ...item } />
 					) }
 					renderSectionHeader={ ({ section: { title } }) => (
 						<Text style={{ fontWeight: "bold", color: "white", paddingLeft: 10, marginTop: 10 }}>{ title }</Text>
 					) }
 					ListHeaderComponent={ (<Text style={{ color: "white", fontWeight: "bold", fontSize: 25, paddingLeft: 15, marginTop: 15, marginBottom: 15 }}>Мои заказы</Text>) }
-					keyExtractor={ item => item.id }
+					keyExtractor={ (item, index) => item.id + "." + index }
 				/>
 			</View>
 		);
