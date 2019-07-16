@@ -54,7 +54,6 @@ export default class OrderPreview extends React.PureComponent {
 	
 	constructor(props) {
 		super(props);
-		this.cancelledOpacity = 0.4;
 	}
 	
 	maybeCancelledStyle() {
