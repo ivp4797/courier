@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { View, Text, StyleSheet } from "react-native";
+import { withMappedNavigationParams } from "react-navigation-props-mapper";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import OrderArea from "./OrderArea";
 import Status from "./Status";
@@ -46,9 +48,23 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default class OrderDetails extends React.Component {
+class OrderDetails extends React.Component {
+	static propTypes = {
+		order: PropTypes.shape({
+			id: PropTypes.number.isRequired,
+			creationDate: PropTypes.instanceOf(Date).isRequired,
+			status: PropTypes.string.isRequired,
+			address: PropTypes.string.isRequired,
+			courierComment: PropTypes.string.isRequired,
+			venue: PropTypes.shape({
+				title: PropTypes.string.isRequired
+			}).isRequired,
+			guest: PropTypes.object.isRequired
+		}).isRequired,
+	};
+
 	render() {
-		const order = this.props.navigation.getParam("order");
+		const { order } = this.props;
 		return (
 			<View style={ styles.container }>
 				<View style={ styles.header }>
@@ -84,3 +100,5 @@ export default class OrderDetails extends React.Component {
 		);
 	}
 }
+
+export default withMappedNavigationParams()(OrderDetails)
