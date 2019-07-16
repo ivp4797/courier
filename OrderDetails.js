@@ -77,7 +77,7 @@ export default class OrderDetails extends React.Component {
 					</View>
 					<View>
 						<Text style={ styles.subTitle }>Клиент</Text>
-						<Contact firstName={ order.guest.firstName } lastName={ order.guest.lastName } phone={ order.guest.phone } />
+						<Contact { ...order.guest } />
 					</View>
 				</OrderArea>
 			</View>
