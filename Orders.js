@@ -1,8 +1,32 @@
 import React from "react";
-import { View, SectionList, Text } from "react-native";
+import { View, SectionList, Text, StyleSheet } from "react-native";
 import OrderPreview from "./OrderPreview";
 import { formatDate } from "./format";
 import { isSameDay } from "./datetime";
+
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: "#1159BE"
+	},
+	sectionList: {
+		paddingLeft: 10,
+		paddingRight: 10
+	},
+	sectionHeader: {
+		fontWeight: "bold",
+		color: "white",
+		paddingLeft: 10,
+		marginTop: 10
+	},
+	listHeader: {
+		color: "white",
+		fontWeight: "bold",
+		fontSize: 25,
+		paddingLeft: 15,
+		marginTop: 15,
+		marginBottom: 15
+	}
+});
  
 const ORDERS_URL = "https://qr-rn-test-task.herokuapp.com/orders";
 
@@ -48,17 +72,17 @@ export default class Orders extends React.Component {
 
 	render() {
 		return (
-			<View style={{ backgroundColor: "#1159BE" }}>
+			<View style={ styles.container }>
 				<SectionList
-					style={{ paddingLeft: 10, paddingRight: 10 }}
+					style={ styles.sectionList }
 					sections={ this.sections() }
 					renderItem={ ({ item, index, section }) => (
 						<OrderPreview key={ item.id + "." + index } { ...item } />
 					) }
 					renderSectionHeader={ ({ section: { title } }) => (
-						<Text style={{ fontWeight: "bold", color: "white", paddingLeft: 10, marginTop: 10 }}>{ title }</Text>
+						<Text style={ styles.sectionHeader }>{ title }</Text>
 					) }
-					ListHeaderComponent={ (<Text style={{ color: "white", fontWeight: "bold", fontSize: 25, paddingLeft: 15, marginTop: 15, marginBottom: 15 }}>Мои заказы</Text>) }
+					ListHeaderComponent={ (<Text style={ styles.listHeader }>Мои заказы</Text>) }
 					keyExtractor={ (item, index) => item.id + "." + index }
 				/>
 			</View>
