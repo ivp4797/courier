@@ -1,9 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Text, TouchableHighlight } from "react-native";
+import { View, Text, TouchableHighlight, StyleSheet } from "react-native";
 import OrderArea from "./OrderArea";
 import Status from "./Status";
 import { formatTime } from "./format";
+
+const styles = StyleSheet.create({
+	container: {
+		display: "flex",
+		flexDirection: "column"
+	},
+	titleAndTimeRow: {
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between"
+	},
+	title: {
+		fontWeight: "bold"
+	},
+	address: {
+		color: "gray",
+		marginTop: 10,
+		marginBottom: 10
+	},
+	cancelled: {
+		opacity: 0.4
+	},
+	notCancelled: {
+		opacity: 1
+	},
+	statusContainer: {
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "flex-start"
+	}
+});
 
 export default class OrderPreview extends React.PureComponent {
 	static propTypes = {
@@ -26,26 +57,21 @@ export default class OrderPreview extends React.PureComponent {
 		this.cancelledOpacity = 0.4;
 	}
 	
-	opacity() {
-		return this.props.status === "CANCELED" ? this.cancelledOpacity : 1;
-	}
-	
-	renderCreationTime() {
-		const date = this.props.order.creationDate;
-		return <Text style={{ opacity: this.opacity() }}>{ formatTime(date) }</Text>;
+	maybeCancelledStyle() {
+		return this.props.status === "CANCELED" ? styles.cancelled : styles.notCancelled;
 	}
 
 	render() {
 		return (
 			<TouchableHighlight onPress={ () => this.props.goToDetails() }>
-				<OrderArea style={{ display: "flex", flexDirection: "column" }}>
-					<View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-						<Text style={{ fontWeight: "bold", opacity: this.opacity() }}>{ this.props.order.title }</Text>
-						{ this.renderCreationTime() }
+				<OrderArea style={ styles.container }>
+					<View style={ styles.titleAndTimeRow }>
+						<Text style={[ styles.title, this.maybeCancelledStyle() ]}>{ this.props.order.title }</Text>
+						<Text style={ this.maybeCancelledStyle() }>{ formatTime(this.props.order.creationDate) }</Text>
 					</View>
-					<Text style={{ color: "gray", marginTop: 10, marginBottom: 10, opacity: this.opacity() }}>{ this.props.order.address }</Text>
-					<View style={{ display: "flex", flexDirection: "row", justifyContent: "flex-start" }}>
-						<Status status={ this.props.order.status } style={{ opacity: this.opacity() }} />
+					<Text style={[ styles.address, this.maybeCancelledStyle() ]}>{ this.props.order.address }</Text>
+					<View style={ styles.statusContainer }>
+						<Status status={ this.props.order.status } style={ this.maybeCancelledStyle() } />
 					</View>
 				</OrderArea>
 			</TouchableHighlight>
