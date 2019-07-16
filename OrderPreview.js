@@ -36,18 +36,6 @@ export default class OrderPreview extends React.PureComponent {
 	
 	constructor(props) {
 		super(props);
-		this.statusColors = {
-			CANCELED: "#F08080",
-			NEW: "#F0E68C",
-			SENT_TO_KITCHEN: "orange",
-			DONE: "#00CED1"
-		};
-		this.statusDescriptions = {
-			CANCELED: "ОТМЕНЕН",
-			NEW: "НОВЫЙ",
-			SENT_TO_KITCHEN: "ОТПРАВЛЕН НА КУХНЮ",
-			DONE: "ПРИГОТОВЛЕН"
-		};
 		this.cancelledOpacity = 0.4;
 	}
 	
