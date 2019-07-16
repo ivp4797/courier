@@ -51,7 +51,15 @@ function to2digit(time) {
 }
 
 export function formattedDate(date) {
-	return String(date.getDate()) + " " + casedMonthName(date) + " " + String(date.getFullYear());
+	if (isSameDay(date, today())) {
+		return "Сегодня";
+	}
+	else if (isSameDay(date, yesterday())) {
+		return "Вчера";
+	}
+	else {
+		return String(date.getDate()) + " " + casedMonthName(date) + " " + String(date.getFullYear());
+	}
 }
 
 export function formattedTime(date) {

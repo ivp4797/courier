@@ -21,18 +21,6 @@ export default class Orders extends React.Component {
 			}));
 	}
 	
-	sectionTitle(date) {
-		if (isSameDay(date, today())) {
-			return "Сегодня";
-		}
-		else if (isSameDay(date, yesterday())) {
-			return "Вчера";
-		}
-		else {
-			return formattedDate(date);
-		}
-	}
-	
 	sections() {
 		const sections = [];
 		let date = null;
@@ -41,7 +29,7 @@ export default class Orders extends React.Component {
 			if ((date == null) || !isSameDay(date, creationDate)) {
 				date = creationDate;
 				sections.push({
-					title: this.sectionTitle(date),
+					title: formattedDate(date),
 					data: [ order ]
 				});
 			}
