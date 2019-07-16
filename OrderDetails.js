@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import OrderArea from "./OrderArea";
 import Status from "./Status";
+import Contact from "./Contact";
 import { formattedDateTime } from "./dateTimeUtils";
 
 export default class OrderDetails extends React.Component {
@@ -36,8 +37,7 @@ export default class OrderDetails extends React.Component {
 					</View>
 					<View>
 						<Text style={{ color: "gray", marginBottom: 5 }}>Клиент</Text>
-						<Text>{ order.guest.firstName + " " + order.guest.lastName }</Text>
-						<Text>{ order.guest.phone }</Text>
+						<Contact order={ order } />
 					</View>
 				</OrderArea>
 			</View>
