@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Linking } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { formatPhone } from "./format";
 
@@ -43,6 +43,15 @@ export default class Contact extends React.Component {
 			}
 		}
 	};
+	
+	constructor(props) {
+		super(props);
+		this.makePhoneCall = this.makePhoneCall.bind(this);
+	}
+	
+	makePhoneCall() {
+		Linking.openURL(`tel:${formatPhone(this.props.phone)}`);
+	}
 
 	render() {
 		return (
@@ -52,7 +61,7 @@ export default class Contact extends React.Component {
 					<Text style={ styles.phone }>{ formatPhone(this.props.phone) }</Text>
 				</View>
 				<View style={ styles.callBtn }>
-					<Icon name="call" color="white" size={ 30 } />
+					<Icon name="call" color="white" size={ 30 } onPress={ this.makePhoneCall } />
 				</View>
 			</View>
 		);
