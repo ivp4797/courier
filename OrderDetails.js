@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import OrderArea from "./OrderArea";
 import Status from "./Status";
 import Contact from "./Contact";
-import { formattedDateTime } from "./dateTimeUtils";
+import { formatDateTime } from "./format";
 
 export default class OrderDetails extends React.Component {
 	render() {
@@ -19,7 +19,7 @@ export default class OrderDetails extends React.Component {
 					<View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 40 }}>
 						<View style={{ display: "flex", flexDirection: "column" }}>
 							<Text style={{ color: "gray", marginBottom: 5 }}>Дата создания</Text>
-							<Text>{ formattedDateTime(order.creationDate) }</Text>
+							<Text>{ formatDateTime(order.creationDate) }</Text>
 						</View>
 						<Status status={ order.status } />
 					</View>
@@ -37,7 +37,7 @@ export default class OrderDetails extends React.Component {
 					</View>
 					<View>
 						<Text style={{ color: "gray", marginBottom: 5 }}>Клиент</Text>
-						<Contact order={ order } />
+						<Contact firstName={ order.guest.firstName } lastName={ order.guest.lastName } phone={ order.guest.phone } />
 					</View>
 				</OrderArea>
 			</View>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text, TouchableHighlight } from "react-native";
 import OrderArea from "./OrderArea";
 import Status from "./Status";
-import { formattedTime } from "./dateTimeUtils";
+import { formatTime } from "./format";
 
 export default class OrderPreview extends React.PureComponent {
 	static propTypes = {
@@ -48,7 +48,7 @@ export default class OrderPreview extends React.PureComponent {
 	
 	renderCreationTime() {
 		const date = this.props.order.creationDate;
-		return <Text style={{ opacity: this.opacity() }}>{ formattedTime(date) }</Text>;
+		return <Text style={{ opacity: this.opacity() }}>{ formatTime(date) }</Text>;
 	}
 
 	render() {

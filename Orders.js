@@ -1,7 +1,8 @@
 import React from "react";
 import { View, SectionList, Text } from "react-native";
 import OrderPreview from "./OrderPreview";
-import { formattedDate, today, yesterday, isSameDay } from "./dateTimeUtils";
+import { formatDate } from "./format";
+import { isSameDay } from "./datetime";
  
 const ORDERS_URL = "https://qr-rn-test-task.herokuapp.com/orders";
 
@@ -34,7 +35,7 @@ export default class Orders extends React.Component {
 				date = creationDate;
 				sections.push({
 					key: order.id,
-					title: formattedDate(date),
+					title: formatDate(date),
 					data: [ data ]
 				});
 			}

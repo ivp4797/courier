@@ -16,8 +16,8 @@ export function yesterday() {
 	return date;
 }
 
-function casedMonthName(date) {
-	switch (Number(date.getMonth())) {
+export function casedMonthName(month) {
+	switch (Number(month)) {
 		case 0:
 			return "января";
 		case 1:
@@ -43,29 +43,4 @@ function casedMonthName(date) {
 		case 11:
 			return "декабря";
 	}
-}
-
-function to2digit(time) {
-	time = String(time);
-	return time.length < 2 ? "0".concat(time) : time;
-}
-
-export function formattedDate(date) {
-	if (isSameDay(date, today())) {
-		return "Сегодня";
-	}
-	else if (isSameDay(date, yesterday())) {
-		return "Вчера";
-	}
-	else {
-		return String(date.getDate()) + " " + casedMonthName(date) + " " + String(date.getFullYear());
-	}
-}
-
-export function formattedTime(date) {
-	return to2digit(date.getHours()) + ":" + to2digit(date.getMinutes());
-}
-
-export function formattedDateTime(date) {
-	return formattedDate(date) + " " + formattedTime(date);
 }
