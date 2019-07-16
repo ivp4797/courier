@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { View, Text } from "react-native";
 import OrderArea from "./OrderArea";
+import Status from "./Status";
 import { formattedTime } from "./dateTimeUtils";
 
 export default class OrderPreview extends React.PureComponent {
@@ -68,19 +69,7 @@ export default class OrderPreview extends React.PureComponent {
 				</View>
 				<Text style={{ color: "gray", marginTop: 10, marginBottom: 10, opacity: this.opacity() }}>{ this.props.address }</Text>
 				<View style={{ display: "flex", flexDirection: "row", justifyContent: "flex-start" }}>
-					<Text style={{
-							fontWeight: "bold",
-							color: "white",
-							backgroundColor: this.statusColors[this.props.status],
-							borderRadius: 5,
-							paddingLeft: 10,
-							paddingRight: 10,
-							paddingTop: 5,
-							paddingBottom: 5,
-							opacity: this.opacity()
-						}}>
-						{ this.statusDescriptions[this.props.status] }
-					</Text>
+					<Status status={ this.props.status } style={{ opacity: this.opacity() }} />
 				</View>
 			</OrderArea>
 		);
