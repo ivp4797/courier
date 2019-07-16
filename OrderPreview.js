@@ -8,7 +8,6 @@ import { formatTime } from "./format";
 export default class OrderPreview extends React.PureComponent {
 	static propTypes = {
 		order: PropTypes.shape({
-			//id: PropTypes.number.isRequired,
 			title: PropTypes.string.isRequired,
 			creationDate: PropTypes.instanceOf(Date).isRequired,
 			status: PropTypes.oneOf([
@@ -17,22 +16,7 @@ export default class OrderPreview extends React.PureComponent {
 				"SENT_TO_KITCHEN",
 				"DONE"
 			]).isRequired,
-			address: PropTypes.string.isRequired,
-			/*courierComment: PropTypes.string.isRequired,
-			venue: PropTypes.shape({
-				id: PropTypes.number.isRequired,
-				title: PropTypes.string.isRequired
-			}).isRequired,
-			guest: PropTypes.shape({
-				id: PropTypes.number.isRequired,
-				firstName: PropTypes.string.isRequired,
-				lastName: PropTypes.string.isRequired,
-				phone: (props, propName, componentName) => {
-					if (!/^\(\d\d\d\)\d\d\d-\d\d-\d\d$/.test(props[propName])) {
-						return new Error("Property " + propName + " in component " + componentName + " must be in format: (xxx)xxx-xx-xx");
-					}
-				}
-			}).isRequired*/
+			address: PropTypes.string.isRequired
 		}).isRequired,
 		goToDetails: PropTypes.func.isRequired
 	};
