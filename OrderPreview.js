@@ -57,7 +57,7 @@ export default class OrderPreview extends React.PureComponent {
 	}
 	
 	maybeCancelledStyle() {
-		return this.props.status === "CANCELED" ? styles.cancelled : styles.notCancelled;
+		return this.props.order.status === "CANCELED" ? styles.cancelled : styles.notCancelled;
 	}
 
 	render() {
